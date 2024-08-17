@@ -2,4 +2,11 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
+    id("org.jetbrains.kotlin.kapt") version "1.9.0" apply false // Apply the kapt plugin
+
+}
+buildscript {
+    dependencies {
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${libs.versions.hilt.get()}")
+    }
 }
