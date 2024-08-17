@@ -68,7 +68,20 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // hilt
     implementation(libs.dagger.hilt.android)  // Add this line for Hilt
     kapt(libs.dagger.hilt.compiler)  // Add this line for Hilt compiler
+     //view model
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    //view model utilities for compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // coroutines
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.navigation.compose)
 }
