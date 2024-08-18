@@ -13,6 +13,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.ganesh.toptweethub.api.TopTweetHubApi
 import com.ganesh.toptweethub.screens.CategoryScreen
 import com.ganesh.toptweethub.screens.DetailScreen
@@ -27,6 +32,27 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            App()
+        }
+    }
+}
+
+@Composable
+fun App() {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "category") {
+        composable(route = "category") {
+            CategoryScreen {
+                navController.navigate("detail/$it")
+            }
+        }
+        composable(
+            route = "detail/{category}",
+            arguments = listOf(navArgument("category")
+            {
+                type = NavType.StringType
+            })
+        ) {
             DetailScreen()
         }
     }
