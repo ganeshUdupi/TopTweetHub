@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.ganesh.toptweethub.api.TopTweetHubApi
 import com.ganesh.toptweethub.screens.CategoryScreen
+import com.ganesh.toptweethub.screens.DetailScreen
 import com.ganesh.toptweethub.ui.theme.TopTweetHubTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CategoryScreen()
+            DetailScreen()
         }
     }
 }

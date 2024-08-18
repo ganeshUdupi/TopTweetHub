@@ -17,15 +17,18 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ganesh.toptweethub.R
 import com.ganesh.toptweethub.viewmodels.CategoriesViewModel
 
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun CategoryScreen() {
     val categoryViewModel: CategoriesViewModel = viewModel()
@@ -36,7 +39,7 @@ fun CategoryScreen() {
         contentPadding = PaddingValues(8.dp),
         verticalArrangement = Arrangement.SpaceAround
     ) {
-        items(categories.value) {
+        items(categories.value.distinct()) {
             CategoryItem(category = it)
         }
 
@@ -49,10 +52,15 @@ fun CategoryScreen() {
 fun CategoryItem(category: String) {
     Box(
         modifier = Modifier
-            .padding(4.dp)
-            .size(160.dp)
+            .padding(4.dp).size(160.dp)
             .clip(RoundedCornerShape(8.dp))
-            .border(1.dp, Color(0xFFEEEEEE)), contentAlignment = Alignment.BottomCenter
+            .paint(
+                painterResource(id = R.drawable.bg),
+                contentScale = ContentScale.Crop
+            )
+            .border(1.dp,
+                Color(0xFFEEEEEE)),
+                  contentAlignment = Alignment.BottomCenter
     ) {
         Text(
             text = category,
